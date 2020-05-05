@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
@@ -21,20 +21,21 @@
 
 
     <bean id="musicPlayer"
-          class="ru.cherniak.springlearn.MusicPlayer">
+          class="ru.cherniak.springlearn.MusicPlayer"
+          scope="prototype">
         <property name="musicList">
-       <list>
-<!--       <list value-type="ru.cherniak.springlearn.Music">-->
-           <ref bean="classicalBean"/>
-           <ref bean="rockBean"/>
-           <ref bean="rapBean"/>
-        </list>
+            <list>
+                <!--       <list value-type="ru.cherniak.springlearn.Music">-->
+                <ref bean="classicalBean"/>
+                <ref bean="rockBean"/>
+                <ref bean="rapBean"/>
+            </list>
         </property>
-<!--        <property name="music" ref="musicBean"/>-->
+        <!--        <property name="music" ref="musicBean"/>-->
 
-<!--        <property name="name" value="Player name"/>-->
-<!--        <property name="volume" value="50"/>-->
-<!--this with used musicPlayer.properties = -->
+        <!--        <property name="name" value="Player name"/>-->
+        <!--        <property name="volume" value="50"/>-->
+        <!--this with used musicPlayer.properties = -->
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
 

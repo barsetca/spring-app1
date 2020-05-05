@@ -12,12 +12,29 @@ public class TestSpring {
 //        Music rapBean = context.getBean("rapBean", Music.class);
 
 //        MusicPlayer musicPlayer = new MusicPlayer(musicBean); from Dependency injection =
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
 
-       musicPlayer.playMusic();
+        //scope = singleton boolean compareBean -> true and hash ==
+        //scope = prototype boolean compareBean -> false and hash !=
+        boolean compareBean = firstMusicPlayer == secondMusicPlayer;
 
-        System.out.println(musicPlayer.getName());
-        System.out.println(musicPlayer.getVolume());
+        System.out.println(compareBean);
+        System.out.println(firstMusicPlayer);
+        System.out.println(secondMusicPlayer);
+
+        //scope = singleton changing first change second
+        //scope = prototype changing first no change second
+
+        firstMusicPlayer.setVolume(10);
+        System.out.println("firstVolume: " + firstMusicPlayer.getVolume());
+        System.out.println("secondVolume: " + secondMusicPlayer.getVolume());
+
+
+        firstMusicPlayer.playMusic();
+
+        System.out.println(firstMusicPlayer.getName());
+        System.out.println(firstMusicPlayer.getVolume());
 
         context.close();
     }
