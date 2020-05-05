@@ -7,34 +7,21 @@ public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
 
-//        Music classicalBean = context.getBean("classicalBean", Music.class);
-//        Music rockBean = context.getBean("rockBean", Music.class);
-//        Music rapBean = context.getBean("rapBean", Music.class);
 
-//        MusicPlayer musicPlayer = new MusicPlayer(musicBean); from Dependency injection =
-        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-
-        //scope = singleton boolean compareBean -> true and hash ==
-        //scope = prototype boolean compareBean -> false and hash !=
-        boolean compareBean = firstMusicPlayer == secondMusicPlayer;
-
-        System.out.println(compareBean);
-        System.out.println(firstMusicPlayer);
-        System.out.println(secondMusicPlayer);
-
-        //scope = singleton changing first change second
-        //scope = prototype changing first no change second
-
-        firstMusicPlayer.setVolume(10);
-        System.out.println("firstVolume: " + firstMusicPlayer.getVolume());
-        System.out.println("secondVolume: " + secondMusicPlayer.getVolume());
+        Music rockBean = context.getBean("rockMusic", Music.class);
+        Music classicalBean = context.getBean("classicalMusic", Music.class);
+        Music rapBean = context.getBean("rapMusic", Music.class);
 
 
-        firstMusicPlayer.playMusic();
+        MusicPlayer musicPlayer1 = new MusicPlayer(rockBean);
+        MusicPlayer musicPlayer2 = new MusicPlayer(classicalBean);
+        MusicPlayer musicPlayer3 = new MusicPlayer(rapBean);
 
-        System.out.println(firstMusicPlayer.getName());
-        System.out.println(firstMusicPlayer.getVolume());
+
+        musicPlayer1.playMusic();
+        musicPlayer2.playMusic();
+        musicPlayer3.playMusic();
+
 
         context.close();
     }
