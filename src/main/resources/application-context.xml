@@ -9,11 +9,19 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
+    <!--     for scope="prototype" - init call each time when create bean but destroy did not call-->
     <bean id="classicalBean"
-          class="ru.cherniak.springlearn.ClassicalMusic">
+          class="ru.cherniak.springlearn.ClassicalMusic"
+    init-method="doMyInit"
+    destroy-method="doMyDestroy">
     </bean>
+
+<!--    factory method in the RockMusic-->
+    <!--   if scope singleton - call factory-method only onetime -->
     <bean id="rockBean"
-          class="ru.cherniak.springlearn.RockMusic">
+          class="ru.cherniak.springlearn.RockMusic"
+          scope="prototype"
+    factory-method="getRockMusic">
     </bean>
     <bean id="rapBean"
           class="ru.cherniak.springlearn.RapMusic">
