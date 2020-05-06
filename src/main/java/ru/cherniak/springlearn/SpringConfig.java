@@ -2,9 +2,11 @@ package ru.cherniak.springlearn;
 
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 //xml config: <context:component-scan base-package="ru.cherniak.springlearn"/>
@@ -16,26 +18,34 @@ public class SpringConfig {
     //Example hand made configuration:
 
     @Bean
-    public ClassicalMusic classicalMusic(){
+    public ClassicalMusic classicalMusic() {
         return new ClassicalMusic();
     }
+
     @Bean
-    public RockMusic rockMusic(){
+    public RockMusic rockMusic() {
         return new RockMusic();
     }
 
     @Bean
-    public RapMusic rapMusic(){
+    public RapMusic rapMusic() {
         return new RapMusic();
     }
 
     @Bean
-    public MusicPlayer musicPlayer(){
-        return new MusicPlayer(rockMusic(), rapMusic(), classicalMusic());
+    public List<Music> listMusicType() {
+        // Этот лист неизменяемый (immutable)
+        return Arrays.asList(classicalMusic(), rockMusic(), rapMusic());
+    }
+
+
+    @Bean
+    public MusicPlayer musicPlayer() {
+        return new MusicPlayer(listMusicType());
     }
 
     @Bean
-    public Computer computer(){
+    public Computer computer() {
         return new Computer(musicPlayer());
     }
 }
