@@ -1,6 +1,7 @@
 package ru.cherniak.springlearn;
 
-public interface Music {
+import java.util.List;
 
-    String getSong();
+public interface Music {
+    List<String> getSong();
 }

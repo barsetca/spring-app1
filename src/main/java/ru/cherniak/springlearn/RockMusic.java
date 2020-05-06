@@ -2,24 +2,24 @@ package ru.cherniak.springlearn;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class RockMusic implements Music{
 
-    //Pattern factory method
+    private List<String> songs = new ArrayList<>();
 
-// for using factory-method in spring context need have private constructor
-    // for prohibit create object using new
-    private RockMusic() {
-    }
-
-    //factory method
-    public static RockMusic getRockMusic(){
-        System.out.println(" factory-method getRockMusic()");
-        return new RockMusic();
+    // Блок инициализации объекта (англ. Instance initialization block)
+    // Выполняется каждый раз, когда создается объект класса
+    {
+        songs.add("Rock song1");
+        songs.add("Rock song2");
+        songs.add("Rock song3");
     }
 
     @Override
-    public String getSong() {
-        return "RockStar song";
+    public List<String> getSong() {
+        return songs;
     }
 }
