@@ -1,6 +1,8 @@
 package ru.cherniak.springlearn;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,13 +13,24 @@ import java.util.List;
 public class MusicPlayer {
 
 //    @Autowired
-     private RockMusic rockMusic;
-     private RapMusic rapMusic;
+     private Music music1;
+     private Music music2;
+     private Music music3;
+
+     @Value("${musicPlayer.name}")
+     private String name;
+
+    @Value("${musicPlayer.volume}")
+     private int volume;
+
+
 
     @Autowired
-    public MusicPlayer(RockMusic rockMusic, RapMusic rapMusic) {
-        this.rockMusic = rockMusic;
-        this.rapMusic = rapMusic;
+    public MusicPlayer(@Qualifier("rockMusic") Music music1,
+                       @Qualifier("rapMusic")Music music2, @Qualifier("classicalMusic")Music music3) {
+        this.music1 = music1;
+        this.music2 = music2;
+        this.music3 = music3;
     }
 
     //IoC - inversion of control
@@ -39,17 +52,17 @@ public class MusicPlayer {
 //        this.music = music;
 //    }
 
-//    public String getName() {
-//        return name;
-//    }
+    public String getName() {
+        return name;
+    }
 //
 //    public void setName(String name) {
 //        this.name = name;
 //    }
 //
-//    public int getVolume() {
-//        return volume;
-//    }
+    public int getVolume() {
+        return volume;
+    }
 //
 //    public void setVolume(int volume) {
 //        this.volume = volume;
@@ -66,7 +79,7 @@ public class MusicPlayer {
         public String playMusic() {
 //            System.out.println("Playing: " + rockMusic.getSong());
 //            System.out.println("Playing: " + rapMusic.getSong());
-            return "Playing: " + rockMusic.getSong();
+            return "Playing: " + music1.getSong() + " " + music2.getSong() + " " + music3.getSong();
         }
     }
 

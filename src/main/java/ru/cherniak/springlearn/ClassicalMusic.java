@@ -1,11 +1,17 @@
 package ru.cherniak.springlearn;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//@Component
-public class ClassicalMusic implements Music{
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
-    public void doMyInit(){
+@Component
+@Scope("prototype")
+public class ClassicalMusic implements Music {
+
+    @PostConstruct
+    public void doMyInit() {
         System.out.println("Doing my initialization");
     }
 
@@ -14,7 +20,8 @@ public class ClassicalMusic implements Music{
         return "Classical song";
     }
 
-    public void doMyDestroy(){
+    @PreDestroy
+    public void doMyDestroy() {
         System.out.println("Doing my destruction");
     }
 }
