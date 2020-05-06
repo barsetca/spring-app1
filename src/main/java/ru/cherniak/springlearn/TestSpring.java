@@ -1,11 +1,15 @@
 package ru.cherniak.springlearn;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        //change application-context.xml to SpringConfig
+       // ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
 
 //        Music rockBean = context.getBean("rockMusic", Music.class);

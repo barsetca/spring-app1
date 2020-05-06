@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
-@Scope("prototype")
+//@Component
+//@Scope("prototype")
 public class ClassicalMusic implements Music {
 
+
+    // for "prototype" beans init method call each time
     @PostConstruct
     public void doMyInit() {
         System.out.println("Doing my initialization");
@@ -20,6 +22,8 @@ public class ClassicalMusic implements Music {
         return "Classical song";
     }
 
+
+// for "prototype" beans destroy method not call
     @PreDestroy
     public void doMyDestroy() {
         System.out.println("Doing my destruction");

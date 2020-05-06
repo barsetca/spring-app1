@@ -2,15 +2,13 @@ package ru.cherniak.springlearn;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class RockMusic implements Music{
 
     //Pattern factory method
 
 // for using factory-method in spring context need have private constructor
     // for prohibit create object using new
-    private RockMusic() {
-    }
 
     //factory method
     public static RockMusic getRockMusic(){

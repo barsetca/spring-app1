@@ -9,23 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Component - сщздание бина
-@Component
+//@Component
 public class MusicPlayer {
 
 //    @Autowired
+
      private Music music1;
      private Music music2;
      private Music music3;
 
      @Value("${musicPlayer.name}")
      private String name;
-
     @Value("${musicPlayer.volume}")
      private int volume;
 
 
 
-    @Autowired
+//    @Autowired
     public MusicPlayer(@Qualifier("rockMusic") Music music1,
                        @Qualifier("rapMusic")Music music2, @Qualifier("classicalMusic")Music music3) {
         this.music1 = music1;
