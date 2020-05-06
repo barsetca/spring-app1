@@ -1,23 +1,40 @@
 package ru.cherniak.springlearn;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+//@Component - сщздание бина
+@Component
 public class MusicPlayer {
 
-    //for DI from setter
-     private Music music;
-//     private String name;
-//     private int volume;
+//    @Autowired
+     private RockMusic rockMusic;
+     private RapMusic rapMusic;
 
-//    public MusicPlayer() {
-//    }
+    @Autowired
+    public MusicPlayer(RockMusic rockMusic, RapMusic rapMusic) {
+        this.rockMusic = rockMusic;
+        this.rapMusic = rapMusic;
+    }
 
     //IoC - inversion of control
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-//
+    //@Autowired - внедрение зависимости music
+
+//     @Autowired
+//    public MusicPlayer(Music music) {
+//        this.music = music;
+//    }
+
+
+//     @Autowired
+//    public void setMusic(Music music) {
+//        this.music = music;
+//    }
+
+    //
 //    public void setMusic(Music music) {
 //        this.music = music;
 //    }
@@ -46,8 +63,10 @@ public class MusicPlayer {
 //        this.musicList = musicList;
 //    }
 
-        public void playMusic() {
-            System.out.println("Playing: " + music.getSong());
+        public String playMusic() {
+//            System.out.println("Playing: " + rockMusic.getSong());
+//            System.out.println("Playing: " + rapMusic.getSong());
+            return "Playing: " + rockMusic.getSong();
         }
     }
 
