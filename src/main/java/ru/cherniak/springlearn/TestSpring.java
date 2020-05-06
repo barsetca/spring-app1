@@ -22,15 +22,27 @@ public class TestSpring {
         Пометив MusicPlayer аннотациями @Component и @Autowired мы создаем бин через контекст спринга
          */
 
-//        MusicPlayer musicPlayer1 = context.getBean("musicPlayer" , MusicPlayer.class);
+        MusicPlayer musicPlayer1 = context.getBean("musicPlayer" , MusicPlayer.class);
 //        musicPlayer1.playMusic();
 //        musicPlayer2.playMusic();
 //        musicPlayer3.playMusic();
 
  //       if have Computer
-        Computer computer = context.getBean("computer", Computer.class);
+//        Computer computer = context.getBean("computer", Computer.class);
+//
+//        System.out.println(computer);
 
-        System.out.println(computer);
+        System.out.println(musicPlayer1.getName());
+        System.out.println(musicPlayer1.getVolume());
+
+
+
+        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
+        //checking @Scope
+        ClassicalMusic classicalMusic2 = context.getBean("classicalMusic", ClassicalMusic.class);
+//        System.out.println(classicalMusic1 == classicalMusic2);
+
+
         context.close();
     }
 }
